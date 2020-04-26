@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_pymongo import pymongo  # pip install Flask-PyMongo
-from app import app
 
 CONNECTION_STRING = "mongodb+srv://Alex:init1234567890@cluster0-hmzhr.mongodb.net/test?retryWrites=true&w=majority"
 
