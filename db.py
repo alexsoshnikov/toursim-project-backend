@@ -5,4 +5,4 @@ CONNECTION_STRING = "mongodb+srv://Alex:init1234567890@cluster0-hmzhr.mongodb.ne
 
 client = pymongo.MongoClient(CONNECTION_STRING)
 db = client.get_database('tourism')
-data = pymongo.collection.Collection(db, 'data')
+DATA = pymongo.collection.Collection(db, 'data')
