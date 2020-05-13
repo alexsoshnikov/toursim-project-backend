@@ -23,6 +23,26 @@ def return_places_rating(places):
     return raiting
 
 
-# find = gmaps.find_place(
-#     'Музей пушкина', input_type='textquery', language='ru-RU')
-# print(find)
+def return_place_info(query):
+    places = []
+    info = gmaps.find_place(
+        query['text'], input_type='textquery', language='ru-RU')
+
+    for i in range(0, len(info['candidates'])):
+        place = gmaps.place(info['candidates'][i]['place_id'], fields=[
+                            'place_id', 'rating', 'formatted_address', 'geometry/location'], language='ru-RU')
+        places.append({
+            'rating': place['result']['rating'],
+            'place_id': place['result']['place_id'],
+            'address': place['result']['formatted_address'],
+            'location': place['result']['geometry']['location'],
+        })
+
+    return places
+
+
+# query = {
+#     'query': 'Музей Пушкина'
+# }
+
+# print(return_place_info(query))

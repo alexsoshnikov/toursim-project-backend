@@ -3,7 +3,7 @@ from bson.objectid import ObjectId
 from flask_cors import CORS  # pip install -U flask-cors
 from db import DATA
 from directions import return_directions_result
-from rating import return_places_rating
+from placeinfo import return_places_rating, return_place_info
 
 app = Flask(__name__)
 
@@ -33,6 +33,12 @@ def get_directions():
 @app.route('/api/rating', methods=['GET'])
 def get_rating():
     result = return_places_rating(get_places_from_db())
+    return jsonify(result)
+
+
+@app.route('/api/query', methods=['POST'])
+def post_query():
+    result = return_place_info(request.json)
     return jsonify(result)
 
 
