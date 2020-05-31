@@ -4,6 +4,7 @@ from flask_cors import CORS  # pip install -U flask-cors
 from db import DATA
 from directions import return_directions_result
 from placeinfo import return_places_rating, return_place_info
+from salesman import return_salesman_result
 
 app = Flask(__name__)
 
@@ -34,6 +35,13 @@ def get_directions():
 def get_rating():
     result = return_places_rating(get_places_from_db())
     return jsonify(result)
+
+
+@app.route('/api/salesman', methods=['GET'])
+def get_salesman_result():
+    result = return_salesman_result(popSize=100,
+                                    eliteSize=20, mutationRate=0.01, generations=50)
+    return result
 
 
 @app.route('/api/query', methods=['POST'])
